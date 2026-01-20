@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Cool App</title>
+    <meta name="csrf-token" content="{{ csrf_token }}">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'chat/css/chat.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/dashboard.css' %}">
+</head>
+<body>
+
+<div class="layout">
+    <aside class="sidebar">
+        <h2>My devices</h2>
+
+        <ul id="device-list"></ul>
+
+        <button id="add-device-btn">+ Add device</button>
+    </aside>
+    <main class="content">
+
+        <section id="device-details" class="hidden">
+            <h2 id="device-title"></h2>
+
+            <p><strong>Name:</strong> <span id="device-name"></span></p>
+            <p><strong>Model:</strong> <span id="device-model"></span></p>
+            <p><strong>Serial number:</strong> <span id="device-serial"></span></p>
+            <p><strong>Start date:</strong> <span id="device-start-date"></span></p>
+            <p><strong>Worked days:</strong> <span id="device-worked"></span></p>
+            <p><strong>Manual: </strong><a id="device-manual" target="_blank">Open manual</a></p>
+            <p class="manual-exists" id="manual-status"></p>
+
+            <button id="edit-device-btn">Edit</button>
+            <button id="delete-device-btn">Delete</button>
+        </section>
+        <section id="device-form-section" class="hidden">
+            <h2 id="form-title"></h2>
+
+            <form id="device-form">
+                
+                <label>
+                    Name (optional)
+                    <input type="text" name="name" placeholder="My laptop">
+                </label>
+
+                <label>
+                    Model *
+                    <input type="text" name="model" placeholder="MacBook Pro M1" required>
+                </label>
+
+                <label>
+                    Serial number (optional)
+                    <input type="text" name="serial_number" placeholder="SN123456">
+                </label>
+
+                <label>
+                    Start date (optional)
+                    <input type="date" name="start_date">
+                </label>
+                <label>
+                    Manual (PDF, DOCX, TXT)
+                    <input type="file" name="manual" accept=".pdf,.doc,.docx">
+                </label>
+
+
+                <div class="form-actions">
+                    <button type="submit">Save</button>
+                    <button type="button" id="cancel-form-btn">Cancel</button>
+                </div>
+
+            </form>
+        </section>
+        <section id="empty-state">
+            <p>Choose a device or add a new one</p>
+        </section>
+
+    </main>
+    {% include "chat/chat.html" %}
+</div>
+
+<script src="{% static 'core/js/dashboard.js' %}"></script>
+<script src="{% static 'chat/js/chat.js' %}"></script>
+</body>
+</html>
