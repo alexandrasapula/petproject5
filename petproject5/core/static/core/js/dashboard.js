@@ -64,6 +64,8 @@ async function showDevice(id) {
     const device = await res.json();
 
     currentDeviceId = device.id;
+    fetchMessages(currentDeviceId);
+    chatSidebar.classList.remove('hidden');
 
     hideAll();
     deviceDetails.classList.remove('hidden');
