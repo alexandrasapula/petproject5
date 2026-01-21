@@ -24,3 +24,8 @@ class DeviceSerializer(serializers.ModelSerializer):
 
     def get_display_name(self, obj):
         return obj.display_name()
+
+    def validate_serial_number(self, value):
+        if value == "":
+            return None
+        return value
