@@ -33,18 +33,21 @@
     border-radius: 8px;
     font-size: 14px;
     border-radius: 12px;
-    margin: 8px;
+    margin: 8px 0;
 }
 
 .chat-message.user {
     align-self: flex-end;
     background-color: var(--accent);
     color: white;
+    margin-left: auto;
 }
 
 .chat-message.bot {
     align-self: flex-start;
-    background-color: #f3f4f6;
+    background-color: white;
+    border-radius: 12px;
+    max-width: 80%;
     color: var(--text-main);
 }
 

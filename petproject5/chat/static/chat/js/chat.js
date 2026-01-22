@@ -9,7 +9,7 @@ chatForm.onsubmit = async (e) => {
     const message = chatInput.value.trim();
     if (!message) return;
 
-    addMessage(`You: ${message}`);
+    addMessage('You', message, false);
 
     const res = await fetch('/chat/send/', {
         method: 'POST',
@@ -26,20 +26,29 @@ chatForm.onsubmit = async (e) => {
     const data = await res.json();
 
     if (data.answer) {
-        addMessage(`Gleep: ${data.answer} ${data.device_model}`);
+        addMessage('Gleep', data.answer, true);
     }
 
     chatInput.value = '';
 };
 
 
-function addMessage(text) {
+function addMessage(author, text, isBot = false) {
     const div = document.createElement('div');
-    div.textContent = text;
     div.classList.add('chat-message');
+    div.textContent = `${author}:\n${text}`;
+    div.style.whiteSpace = 'pre-line';
+
+    if (isBot) {
+        div.classList.add('bot');
+    } else {
+        div.classList.add('user');
+    }
+
     chatMessages.appendChild(div);
     chatMessages.scrollTop = chatMessages.scrollHeight;
 }
+
 
 async function fetchMessages(deviceId) {
     if (!deviceId) return;
@@ -51,10 +60,7 @@ async function fetchMessages(deviceId) {
     const chatMessages = document.getElementById('chat-messages');
     chatMessages.innerHTML = '';
     messages.forEach(msg => {
-        const div = document.createElement('div');
-        div.textContent = `${msg.is_bot ? 'Gleep' : 'You'}: ${msg.content}`;
-        div.classList.add('chat-message');
-        chatMessages.appendChild(div);
+        addMessage(msg.is_bot ? 'Gleep' : 'You', msg.content, msg.is_bot);
     });
     chatMessages.scrollTop = chatMessages.scrollHeight;
 }
