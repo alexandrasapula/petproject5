@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from core.models import Device
 from .models import Message
+from .services.chat_engine import chat_engine
 
 
 class ChatAPIView(APIView):
@@ -14,7 +15,9 @@ class ChatAPIView(APIView):
         device = Device.objects.get(id=device_id, user=request.user)
 
         Message.objects.create(user=request.user, device=device, content=message, is_bot=False)
-        bot_response = f"{message}"
+        messages = Message.objects.filter(user=request.user, device=device)
+        bot_response = chat_engine(device, message, messages)
+        # bot_response = f"{message}"
         Message.objects.create(user=request.user, device=device, content=bot_response, is_bot=True)
 
         return Response({
