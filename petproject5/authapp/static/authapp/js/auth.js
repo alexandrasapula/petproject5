@@ -2,6 +2,11 @@ function clearForm(form) {
     form.reset();
 }
 
+function getCsrfToken(form) {
+    const csrfInput = form.querySelector('[name=csrfmiddlewaretoken]');
+    return csrfInput ? csrfInput.value : '';
+}
+
 function clearMessage() {
     message.textContent = '';
     message.style.color = '';
@@ -14,7 +19,7 @@ const loginForm = document.getElementById('login-form');
 const registerForm = document.getElementById('register-form');
 
 const message = document.getElementById('message');
-const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+// const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
 loginTab.onclick = () => {
     loginForm.classList.remove('hidden');
@@ -37,6 +42,7 @@ registerTab.onclick = () => {
 loginForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
+    const csrftoken = getCsrfToken(loginForm); 
     const response = await fetch('/auth/api/login/', {
         method: 'POST',
         headers: {
@@ -62,6 +68,7 @@ loginForm.addEventListener('submit', async (e) => {
 registerForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
+    const csrftoken = getCsrfToken(registerForm);
     const response = await fetch('/auth/api/register/', {
         method: 'POST',
         headers: {
