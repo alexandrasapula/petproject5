@@ -1,6 +1,6 @@
 .chat-sidebar {
     width: 500px;
-    height: 100vh;
+    height: 100%;
     border-left: 1px solid #fff0f5;
     background-color: #fff0f5;
     display: flex;

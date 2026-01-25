@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="{% static 'chat/css/chat.css' %}">
 </head>
 <body>
-
+<header class="topbar">
+    {% include "core/account_menu.html" %}
+</header>
 <div class="layout">
     <aside class="sidebar">
         <h2>My devices</h2>

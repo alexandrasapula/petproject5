@@ -30,6 +30,19 @@ const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
 
 let currentDeviceId = null;
 
+const accountBtn = document.getElementById('account-btn');
+const dropdown = document.getElementById('account-dropdown');
+
+accountBtn.onclick = () => {
+    dropdown.classList.toggle('hidden');
+};
+
+document.addEventListener('click', (e) => {
+    if (!accountBtn.contains(e.target) && !dropdown.contains(e.target)) {
+        dropdown.classList.add('hidden');
+    }
+});
+
 function hideAll() {
     deviceDetails.classList.add('hidden');
     deviceFormSection.classList.add('hidden');
