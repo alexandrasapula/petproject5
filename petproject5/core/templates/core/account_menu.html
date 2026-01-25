@@ -1,11 +1,14 @@
+{% load socialaccount %}
+
 <div class="account-menu">
     <button id="account-btn">
-        <img src="/static/core/img/user." alt="Account">
+        <img src="/static/core/img/user.png" alt="Account">
     </button>
 
     <div id="account-dropdown" class="account-dropdown hidden">
         <div class="account-email">{{ request.user.email }}</div>
         <a href="{% url 'account_logout' %}">Log out</a>
-        <a href="/accounts/google/login/?process=connect">Connect Google account</a>
-    </div>
+        {% if not request.user.socialaccount_set.exists %}
+        <a href="/accounts/google/login/?process=connect&prompt=select_account&login_hint={{ request.user.email }}">Connect Google account</a>
+        {% endif %}
 </div>

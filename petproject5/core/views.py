@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from allauth.socialaccount.views import ConnectionsView
 from rest_framework import generics, permissions
 from .models import Device
 from .serializers import DeviceSerializer
@@ -55,3 +56,8 @@ class DeviceDeleteView(generics.DestroyAPIView):
 
     def get_queryset(self):
         return Device.objects.filter(user=self.request.user)
+
+
+class MyConnectionsView(ConnectionsView):
+    def get(self, *args, **kwargs):
+        return redirect('/')
