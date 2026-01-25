@@ -99,14 +99,35 @@ h1 {
     background: #FF69B4;
     color: white;
 }
-/* 
-.google {
-    margin-top: 15px;
-    background-color: #fff;
+
+.google-btn {
+    margin-top: 10px;
+    width: 17%;
+    padding: 10px;
+    border-radius: 50px;
+    border: 1px solid white;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-decoration: none;
     color: #444;
-    border: 1px solid #ddd;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease;
 }
 
-.google:hover {
-    background-color: #f5f5f5;
-} */
+.google-btn:hover {
+    background: #FF1493;
+}
+
+.google-btn img {
+    width: 60px;
+    height: 60px;
+}
+
+.input-group input:focus + label,
+
+.input-group input:not(:placeholder-shown) + label,

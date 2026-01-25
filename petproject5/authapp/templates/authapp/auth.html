@@ -19,11 +19,19 @@
         <form id="login-form">
             {% csrf_token %}
             <div class="input-group">
-                <input type="text" id="login-username" required placeholder=" ">
+                <input type="text" id="login-username" 
+                    readonly 
+                    onfocus="this.removeAttribute('readonly');" 
+                    autocomplete="username"
+                    required placeholder=" ">
                 <label>Username</label>
             </div>
             <div class="input-group">
-                <input type="password" id="login-password" required placeholder=" ">
+                <input type="password" id="login-password" 
+                    readonly 
+                    onfocus="this.removeAttribute('readonly');" 
+                    autocomplete="current-password"
+                    required placeholder=" ">
                 <label>Password</label>
             </div>
             <button class="loginreg-button">Log in</button>
@@ -32,23 +40,34 @@
         <form id="register-form" class="hidden">
             {% csrf_token %}
             <div class="input-group">
-                <input type="text" id="reg-username" required placeholder=" ">
+                <input type="text" id="reg-username" 
+                    readonly 
+                    onfocus="this.removeAttribute('readonly');" 
+                    required placeholder=" ">
                 <label>Username</label>
             </div>
+
             <div class="input-group">
-                <input type="email" id="reg-email" required placeholder=" ">
+                <input type="email" id="reg-email" 
+                    readonly 
+                    onfocus="this.removeAttribute('readonly');" 
+                    required placeholder=" ">
                 <label>Email</label>
             </div>
+
             <div class="input-group">
-                <input type="password" id="reg-password" required placeholder=" ">
+                <input type="password" id="reg-password" 
+                    readonly 
+                    onfocus="this.removeAttribute('readonly');" 
+                    autocomplete="new-password"
+                    required placeholder=" ">
                 <label>Password</label>
             </div>
             <button class="loginreg-button">Sign up</button>
         </form>
-        <!-- <a href="/accounts/google/login/" class="loginreg-button google">
-            Sign in with Google
-        </a> -->
-
+        <a href="/accounts/google/login/" class="google-btn">
+            <img src="{% static 'authapp/img/google.png' %}" alt="Google">
+        </a>
         <p id="message"></p>
     </div>
 </div>
