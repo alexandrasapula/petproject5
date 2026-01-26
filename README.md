@@ -41,7 +41,7 @@ python manage.py migrate
 python manage.py runserver
 
 The application will be available at:
-http://127.0.0.1:8000/auth
+http://127.0.0.1:8000/auth/
 
 Notes:
 This project is a pet project
