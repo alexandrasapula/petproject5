@@ -55,6 +55,7 @@ async function fetchMessages(deviceId) {
 
     const res = await fetch(`/chat/send/?device_id=${deviceId}`);
     if (!res.ok) return;
+    if (deviceId !== currentDeviceId) return;
 
     const messages = await res.json();
     const chatMessages = document.getElementById('chat-messages');
@@ -63,4 +64,16 @@ async function fetchMessages(deviceId) {
         addMessage(msg.is_bot ? 'Gleep' : 'You', msg.content, msg.is_bot);
     });
     chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function closeChat() {
+    currentDeviceId = null;
+    chatSidebar.classList.add('hidden');
+    chatMessages.innerHTML = '';
+}
+
+function openChat(deviceId) {
+    currentDeviceId = deviceId;
+    chatSidebar.classList.remove('hidden');
+    fetchMessages(deviceId);
 }

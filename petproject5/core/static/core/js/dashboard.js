@@ -71,21 +71,14 @@ async function loadDevices() {
     });
 }
 
-
 async function showDevice(id) {
     const res = await fetch(`/device/${id}/`);
     const device = await res.json();
 
-    currentDeviceId = device.id;
-    fetchMessages(currentDeviceId);
-    chatSidebar.classList.remove('hidden');
-
     hideAll();
     deviceDetails.classList.remove('hidden');
 
-    const title = device.name || device.model;
-
-    deviceTitle.textContent = title;
+    deviceTitle.textContent = device.name || device.model;
     deviceNameEl.textContent = device.name || '-';
     deviceModelEl.textContent = device.model;
     deviceSerialEl.textContent = device.serial_number || '-';
@@ -95,15 +88,7 @@ async function showDevice(id) {
     manualLink.href = device.manual;
     manualLink.style.display = device.manual ? 'inline' : 'none';
 
-    const manualStatus = document.getElementById('manual-status');
-
-    if (device.manual) {
-        manualStatus.textContent = '';
-    } 
-    else {
-        manualStatus.textContent = 'No manual';
-    }
-    chatSidebar.classList.remove('hidden');
+    openChat(device.id);
 }
 
 addDeviceBtn.onclick = () => {
@@ -117,7 +102,6 @@ addDeviceBtn.onclick = () => {
         chatSidebar.classList.add('hidden');
     }
 };
-
 
 editBtn.onclick = async () => {
     const res = await fetch(`/device/${currentDeviceId}/`);
@@ -181,6 +165,7 @@ deleteBtn.onclick = async () => {
         headers: { 'X-CSRFToken': csrfToken }
     });
 
+    closeChat()
     hideAll();
     emptyState.classList.remove('hidden');
     loadDevices();
