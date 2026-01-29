@@ -193,3 +193,16 @@ SOCIALACCOUNT_PROVIDERS = {
         "AUTH_PARAMS": {"prompt": "select_account"},
     }
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+EMAIL_HOST_USER = 'your email'
+EMAIL_HOST_PASSWORD = 'your host password'
+
+DEFAULT_FROM_EMAIL = 'your from text in email'
+
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'http'
+
