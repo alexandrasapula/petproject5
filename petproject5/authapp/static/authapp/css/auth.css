@@ -101,7 +101,7 @@ h1 {
 }
 
 .google-btn {
-    margin-top: 10px;
+    margin-top: 1px;
     width: 17%;
     padding: 10px;
     border-radius: 50px;
@@ -131,3 +131,24 @@ h1 {
 .input-group input:focus + label,
 
 .input-group input:not(:placeholder-shown) + label,
+
+.form-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 8px;
+}
+
+.auth-link {
+    color: #FF69B4;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.auth-link:hover {
+    text-decoration: underline;
+    color: #FF1493;
+}
+
+.auth-link:visited {
+    color: #FF69B4;
+}
